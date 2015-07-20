@@ -30,7 +30,7 @@
     if ([arrImages count]>0) {
         GallaryVC *preview =[[ GallaryVC alloc] initWithNibName:@"GallaryVC" bundle:nil];
         preview.arrImages=arrImages;
-        UIViewController *rootVC = [[UIApplication sharedApplication] delegate] window] rootViewController];
+        UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
         [rootVC presentViewController:preview animated:YES completion:nil];
         
         
