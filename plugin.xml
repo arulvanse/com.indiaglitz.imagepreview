@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.indiaglitz.ImagePreview"
+        version="1.0.0">
+
+  <name>ImagePreview</name>
+	<description>Testing Plugin for Development</description>
+	<author>Arul</author>
+	<license>MIT</license>
+	<keywords>Testing</keywords>
+  <engines>
+    <engine name="cordova" version=">=3.4.0"/>
+  </engines>
+
+  <asset src="www/imagepreview.js" target="js/imagepreview.js"/>
+
+  <js-module src="www/imagepreview.js" name="imagepreview">
+    <clobbers target="imagepreview" />
+  </js-module>
+
+  <platform name="ios">
+    
+    <config-file target="config.xml" parent="/widget">
+      <feature name="ImagePreview">
+        <param name="ios-package" value="ImagePreview" />
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/ImagePreview.h" target-dir="ImagePreviewPlugin"/>
+    <source-file src="src/ios/ImagePreview.m" target-dir="ImagePreviewPlugin"/>
+  </platform>
+
+
+</plugin>
