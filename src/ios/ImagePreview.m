@@ -30,11 +30,12 @@
     if ([arrImages count]>0) {
         GallaryVC *preview =[[ GallaryVC alloc] initWithNibName:@"GallaryVC" bundle:nil];
         preview.arrImages=arrImages;
-        [self presentViewController:preview animated:YES completion:nil];
+        UIViewController *rootVC = [[UIApplication sharedApplication] delegate] window] rootViewController];
+        [rootVC presentViewController:preview animated:YES completion:nil];
+        
         
     }
 }
-
 - (void) closeGallary:(CDVInvokedUrlCommand*)command{
     
 }
