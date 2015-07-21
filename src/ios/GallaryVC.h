@@ -15,15 +15,15 @@
     NSInteger indexCurrentImage;
     ZoomingView *zoomingView;
     
-    IBOutlet UIButton *btnClose;
-    IBOutlet UIView   *topView;
+     UIButton *btnClose;
+     UIView   *topView;
     
 }
-@property (nonatomic, strong) IBOutlet UIScrollView *mainScrollView;
+@property (nonatomic, strong) UIScrollView *mainScrollView;
 @property (nonatomic, strong) NSArray *arrImages;
 @property (nonatomic, strong) NSMutableArray *arrImagesViews;
 
--(IBAction)btnCloseAvtion:(id)sender;
+
 
 
 @end

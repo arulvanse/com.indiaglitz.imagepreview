@@ -11,16 +11,17 @@
 
 @interface ZoomingView : UIViewController<UIScrollViewDelegate,UIImagePickerControllerDelegate>{
     
-  IBOutlet  UIButton *btnClose;
-  IBOutlet  UIButton *btnSave;
+    UIButton *btnClose;
+    UIButton *btnSave;
+    UIView *topView;
     
 }
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIImageView *imageView;
 @property( nonatomic, strong) NSURL *imageURL;
 @property( nonatomic, strong) UIImage *mainImage;
 
-@property (nonatomic, strong) IBOutlet UIView *topView;
+
 
 
 
