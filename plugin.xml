@@ -40,6 +40,9 @@
     <source-file src="src/ios/ZoomingView.m" target-dir="ImagePreviewPlugin"/>
     <source-file src="src/ios/ZoomingView.xib" target-dir="ImagePreviewPlugin"/>
     
+    <source-file src="src/ios/close2.png" target-dir="ImagePreviewPlugin"/>
+    <source-file src="src/ios/download.png" target-dir="ImagePreviewPlugin"/>
+    
     
   </platform>
 
