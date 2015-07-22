@@ -24,7 +24,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(IBAction)btnCloseAvtion:(id)sender{
+-(void)btnCloseAvtion:(id)sender{
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
@@ -41,6 +41,25 @@
     NSLog(@"page =%ld",(long)indexCurrentImage);
 }
 -(void)setScrollViewConfig{
+    
+    self.mainScrollView=[[UIScrollView alloc]initWithFrame:self.view.frame];
+    self.mainScrollView.backgroundColor=[UIColor grayColor];
+    self.mainScrollView.delegate=self;
+    self.mainScrollView.pagingEnabled=YES;
+    
+    
+    topView =[[UIView alloc]initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 50)];
+    topView.backgroundColor=[UIColor clearColor];
+    
+    btnClose=[[UIButton alloc]initWithFrame:CGRectMake(5, 2.5, 40, 40)];
+    btnClose.backgroundColor=[UIColor clearColor];
+    [btnClose setImage:[UIImage imageNamed:@"close2.png"] forState:UIControlStateNormal];
+    [btnClose addTarget:self action:@selector(btnCloseAvtion:) forControlEvents:UIControlEventTouchUpInside];
+    [topView addSubview:btnClose];
+    [self.view addSubview:topView];
+    
+    
+    
     topView.hidden=NO;
     
     NSInteger intXpos=self.view.frame.size.width;
@@ -55,7 +74,7 @@
         
         AsyncImageView *imgView = [[AsyncImageView alloc]initWithFrame:CGRectMake((i*intXpos)+10, 2, self.view.frame.size.width-20, self.view.frame.size.height)];
         imgView.imageURL =[NSURL URLWithString:[[self.arrImages objectAtIndex:i]objectForKey:@"image"]];
-        //imgView.image = [self.arrImages objectAtIndex:i];
+       // imgView.image = [self.arrImages objectAtIndex:i];
         imgView.contentMode = UIViewContentModeScaleAspectFit;
         imgView.clipsToBounds = YES;
         imgView.backgroundColor=[UIColor clearColor];
@@ -75,6 +94,7 @@
     
     self.mainScrollView.contentSize=CGSizeMake([self.arrImages count]*self.view.frame.size.width, 0);
     self.mainScrollView.backgroundColor=[UIColor grayColor];
+    [self.view addSubview:self.mainScrollView];
     
 }
 
@@ -107,6 +127,9 @@
     NSLog(@"pointInView X=%f Y=%f",pointInView.x,pointInView.y);
     
     NSLog(@"page =%ld",(long)indexCurrentImage);
+
+    
+    [self.view bringSubviewToFront:topView];
     
     topView.hidden=NO;
 }

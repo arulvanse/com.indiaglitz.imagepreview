@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
         id="com.indiaglitz.ImagePreview"
-        version="1.1.6">
+        version="1.1.8">
 
   <name>ImagePreview</name>
 	<description>Testing Plugin for Development</description>
@@ -40,7 +40,9 @@
     <source-file src="src/ios/ZoomingView.m" target-dir="ImagePreviewPlugin"/>
     <source-file src="src/ios/ZoomingView.xib" target-dir="ImagePreviewPlugin"/>
     
-    
+    <source-file src="src/ios/close2.png" target-dir="ImagePreviewPlugin"/>
+	<source-file src="src/ios/download.png" target-dir="ImagePreviewPlugin"/>
+	
   </platform>
 
 

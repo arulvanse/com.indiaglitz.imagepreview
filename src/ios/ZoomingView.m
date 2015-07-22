@@ -41,12 +41,12 @@
     self.imageView.frame = contentsFrame;
 }
 -(void)scrollViewSingleTapped:(UITapGestureRecognizer*)recognizer {
-     self.topView.hidden=NO;
-    [self.scrollView bringSubviewToFront:self.topView];
+     topView.hidden=NO;
+    [self.scrollView bringSubviewToFront:topView];
 }
 
 - (void)scrollViewDoubleTapped:(UITapGestureRecognizer*)recognizer {
-    self.topView.hidden=YES;
+    topView.hidden=YES;
     
     // Get the location within the image view where we tapped
     CGPoint pointInView = [recognizer locationInView:self.imageView];
@@ -69,34 +69,44 @@
 }
 
 - (void)scrollViewTwoFingerTapped:(UITapGestureRecognizer*)recognizer {
-    self.topView.hidden=YES;
+    topView.hidden=YES;
     // Zoom out slightly, capping at the minimum zoom scale specified by the scroll view
     CGFloat newZoomScale = self.scrollView.zoomScale / 1.5f;
     newZoomScale = MAX(newZoomScale, self.scrollView.minimumZoomScale);
     [self.scrollView setZoomScale:newZoomScale animated:YES];
 }
+-(void)setScrollViewConfig{
+    self.scrollView=[[UIScrollView alloc]initWithFrame:self.view.frame];
+    self.scrollView.backgroundColor=[UIColor grayColor];
+    self.scrollView.delegate=self;
+    
+    topView=[[UIView alloc]initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 50)];
+    topView.backgroundColor=[UIColor clearColor];
+    
+    btnClose=[[UIButton alloc]initWithFrame:CGRectMake(5, 2.5, 45, 45)];
+    btnClose.backgroundColor=[UIColor clearColor];
+    [btnClose setImage:[UIImage imageNamed:@"close2.png"] forState:UIControlStateNormal];
+    [btnClose addTarget:self action:@selector(btnClose:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    btnSave=[[UIButton alloc]initWithFrame:CGRectMake(topView.frame.size.width-50, 2.5, 45, 45)];
+    btnSave.backgroundColor=[UIColor clearColor];
+    [btnSave setImage:[UIImage imageNamed:@"download.png"] forState:UIControlStateNormal];
+    [btnSave addTarget:self action:@selector(btnSave:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [topView    addSubview:btnClose];
+    [topView    addSubview:btnSave];
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Set a nice title
-    self.title = @"Image";
-    
-   
-    _scrollView.pagingEnabled=YES;
-    
     // Set up the image we want to scroll & zoom and add it to the scroll view
-    
-    
     UIImage *image = _mainImage;
-     self.imageView = [[UIImageView alloc] initWithImage:image];
-     self.imageView.frame = (CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=image.size};
-  
+    self.imageView = [[UIImageView alloc] initWithImage:image];
+    self.imageView.frame = (CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=image.size};
+    
     
     /*AsyncImageView *imageView=[[AsyncImageView alloc]init];
-    imageView.imageURL =_imageURL;*/
+     imageView.imageURL =_imageURL;*/
     
-   // self.imageView.image=[UIImage imageNamed:@"photo1.png"];
+    // self.imageView.image=[UIImage imageNamed:@"photo1.png"];
     self.imageView.contentMode = UIViewContentModeScaleToFill;
     [self.scrollView addSubview:self.imageView];
     
@@ -105,6 +115,8 @@
     
     // Tell the scroll view the size of the contents
     self.scrollView.contentSize = _mainImage.size;
+    
+
     
     UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewDoubleTapped:)];
     doubleTapRecognizer.numberOfTapsRequired = 2;
@@ -120,6 +132,19 @@
     twoFingerTapRecognizer.numberOfTapsRequired = 1;
     twoFingerTapRecognizer.numberOfTouchesRequired = 2;
     [self.scrollView addGestureRecognizer:twoFingerTapRecognizer];
+    [self.view addSubview:self.scrollView];
+    [self.view  addSubview:topView];
+    
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // Set a nice title
+    self.title = @"Image";
+    [self setScrollViewConfig];
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -170,11 +195,11 @@
     // Pass the selected object to the new view controller.
 }
 */
--(IBAction )btnClose:(id)sender{
+-(void )btnClose:(id)sender{
     [self dismissViewControllerAnimated:NO completion:nil];
     
 }
--(IBAction)btnSave:(id)sender{
+-(void)btnSave:(id)sender{
     
     if (_mainImage) {
         btnSave.hidden=YES;
