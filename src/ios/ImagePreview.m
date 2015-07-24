@@ -19,11 +19,11 @@
 - (void)openGallary:(CDVInvokedUrlCommand*)command{
     
     NSString* callbackId = [command callbackId];
-<<<<<<< HEAD
+
    // NSArray* arrImages = [command arguments];
-=======
+
    // NSArray* arrImages =[ [command arguments];
->>>>>>> origin/master
+
    // NSString* msg = [NSString stringWithFormat: @"Hello, %@", name];
    /* CDVPluginResult* result = [CDVPluginResult
                               resultWithStatus:CDVCommandStatus_OK
@@ -57,11 +57,8 @@
     
     if ([arrImages count]>0) {
         GallaryVC *preview =[[ GallaryVC alloc] initWithNibName:@"GallaryVC" bundle:nil];
-<<<<<<< HEAD
         //preview.arrImages=arrImages;
-=======
         preview.arrImages=(NSArray *)arrImages;
->>>>>>> origin/master
         UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
         [rootVC presentViewController:preview animated:YES completion:nil];
         
