@@ -52,7 +52,7 @@
     topView.backgroundColor=[UIColor clearColor];
     
     btnClose=[[UIButton alloc]initWithFrame:CGRectMake(5, 2.5, 40, 40)];
-    btnClose.backgroundColor=[UIColor clearColor];
+    btnClose.backgroundColor=[UIColor redColor];
     [btnClose setImage:[UIImage imageNamed:@"close2.png"] forState:UIControlStateNormal];
     [btnClose addTarget:self action:@selector(btnCloseAvtion:) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:btnClose];
@@ -70,7 +70,7 @@
     indexCurrentImage=0;
     self.mainScrollView.scrollEnabled=YES;
 
-self.arrImages= [[NSMutableArray alloc]initWithObjects:
+/*self.arrImages= [[NSMutableArray alloc]initWithObjects:
                       [UIImage imageNamed:@"1.jpg"],
                       [UIImage imageNamed:@"2.jpg"],
                       [UIImage imageNamed:@"3.jpg"],
@@ -83,7 +83,7 @@ self.arrImages= [[NSMutableArray alloc]initWithObjects:
                       nil];
 
 
-
+*/
     for (int i=0; i<[self.arrImages count]; i++)
     {
         
@@ -111,9 +111,9 @@ self.arrImages= [[NSMutableArray alloc]initWithObjects:
         [self.arrImagesViews addObject:imgView];
     }
     
-    self.mainScrollView.contentSize=CGSizeMake([self.arrImages count]*self.view.frame.size.width, 0);
+    self.mainScrollView.contentSize=CGSizeMake(self.view.frame.size.width, 0);
     self.mainScrollView.backgroundColor=[UIColor grayColor];
-    [self.view addSubview:self.mainScrollView];
+    /*[self.view addSubview:self.mainScrollView];*/
     
 }
 
