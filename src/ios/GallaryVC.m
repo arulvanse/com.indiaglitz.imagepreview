@@ -73,13 +73,13 @@
     {
         
         AsyncImageView *imgView = [[AsyncImageView alloc]initWithFrame:CGRectMake((i*intXpos)+10, 2, self.view.frame.size.width-20, self.view.frame.size.height)];
-<<<<<<< HEAD
+
         imgView.imageURL =[NSURL URLWithString:[[self.arrImages objectAtIndex:i]objectForKey:@"image"]];
        // imgView.image = [self.arrImages objectAtIndex:i];
-=======
+
         //imgView.imageURL =[NSURL URLWithString:[[self.arrImages objectAtIndex:i]objectForKey:@"image"]];
         imgView.image = [self.arrImages objectAtIndex:i];
->>>>>>> origin/master
+
         imgView.contentMode = UIViewContentModeScaleAspectFit;
         imgView.clipsToBounds = YES;
         imgView.backgroundColor=[UIColor clearColor];

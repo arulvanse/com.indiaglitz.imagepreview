@@ -41,8 +41,13 @@
                       [UIImage imageNamed:@"9.jpg"],
                       nil];
 		*/
-    
-    if ([arrImages count]>0) {
+     GallaryVC *preview =[[ GallaryVC alloc] initWithNibName:@"GallaryVC" bundle:nil];
+        //preview.arrImages=arrImages;
+        //preview.arrImages=(NSArray *)arrImages;
+        UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+        [rootVC presentViewController:preview animated:YES completion:nil];
+        
+   /* if ([arrImages count]>0) {
         GallaryVC *preview =[[ GallaryVC alloc] initWithNibName:@"GallaryVC" bundle:nil];
         //preview.arrImages=arrImages;
         //preview.arrImages=(NSArray *)arrImages;
@@ -51,7 +56,7 @@
         
         
         
-    }
+    }*/
 }
 - (void) closeGallary:(CDVInvokedUrlCommand*)command{
     
