@@ -69,13 +69,27 @@
     self.arrImagesViews=[[NSMutableArray alloc]init];
     indexCurrentImage=0;
     self.mainScrollView.scrollEnabled=YES;
+
+self.arrImages= [[NSMutableArray alloc]initWithObjects:
+                      [UIImage imageNamed:@"1.jpg"],
+                      [UIImage imageNamed:@"2.jpg"],
+                      [UIImage imageNamed:@"3.jpg"],
+                      [UIImage imageNamed:@"4.jpg"],
+                      [UIImage imageNamed:@"5.jpg"],
+                      [UIImage imageNamed:@"6.jpg"],
+                      [UIImage imageNamed:@"7.jpg"],
+                      [UIImage imageNamed:@"8.jpg"],
+                      [UIImage imageNamed:@"9.jpg"],
+                      nil];
+
+
+
     for (int i=0; i<[self.arrImages count]; i++)
     {
         
         AsyncImageView *imgView = [[AsyncImageView alloc]initWithFrame:CGRectMake((i*intXpos)+10, 2, self.view.frame.size.width-20, self.view.frame.size.height)];
 
-        imgView.imageURL =[NSURL URLWithString:[[self.arrImages objectAtIndex:i]objectForKey:@"image"]];
-       // imgView.image = [self.arrImages objectAtIndex:i];
+
 
         //imgView.imageURL =[NSURL URLWithString:[[self.arrImages objectAtIndex:i]objectForKey:@"image"]];
         imgView.image = [self.arrImages objectAtIndex:i];
