@@ -81,20 +81,33 @@
                       [UIImage imageNamed:@"9.jpg"],
                       nil];
 
+<<<<<<< HEAD
 */
     
     NSLog(@"self.arrImages count = %d",self.arrImages.count);
 
+=======
+
+*/
+>>>>>>> origin/master
     for (int i=0; i<[self.arrImages count]; i++)
     {
         
         AsyncImageView *imgView = [[AsyncImageView alloc]initWithFrame:CGRectMake((i*intXpos)+10, 2, self.view.frame.size.width-20, self.view.frame.size.height)];
+<<<<<<< HEAD
         NSString* escapedUrlString =
         [[[self.arrImages objectAtIndex:i]objectForKey:@"image"] stringByAddingPercentEscapesUsingEncoding:
          NSUTF8StringEncoding];
 
         imgView.imageURL =[NSURL URLWithString:escapedUrlString];
         //imgView.image = [self.arrImages objectAtIndex:i];
+=======
+
+
+
+        //imgView.imageURL =[NSURL URLWithString:[[self.arrImages objectAtIndex:i]objectForKey:@"image"]];
+        imgView.image = [self.arrImages objectAtIndex:i];
+>>>>>>> origin/master
 
         imgView.contentMode = UIViewContentModeScaleAspectFit;
         imgView.clipsToBounds = YES;
@@ -113,9 +126,9 @@
         [self.arrImagesViews addObject:imgView];
     }
     
-    self.mainScrollView.contentSize=CGSizeMake([self.arrImages count]*self.view.frame.size.width, 0);
+    self.mainScrollView.contentSize=CGSizeMake(self.view.frame.size.width, 0);
     self.mainScrollView.backgroundColor=[UIColor grayColor];
-    [self.view addSubview:self.mainScrollView];
+    /*[self.view addSubview:self.mainScrollView];*/
     
 }
 

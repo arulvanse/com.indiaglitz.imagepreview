@@ -19,9 +19,14 @@
 - (void)openGallary:(CDVInvokedUrlCommand*)command{
     
     NSString* callbackId = [command callbackId];
+<<<<<<< HEAD
     NSArray* arrImages = [[command arguments] objectAtIndex:0];
     
     NSLog(@"arrImages==%@",arrImages);
+=======
+
+   // NSArray* arrImages = [command arguments];
+>>>>>>> origin/master
 
    // NSArray* arrImages =[ [command arguments];
 
@@ -43,6 +48,7 @@
                       nil];
 		*/
      GallaryVC *preview =[[ GallaryVC alloc] initWithNibName:@"GallaryVC" bundle:nil];
+<<<<<<< HEAD
         //preview.arrImages=arrImages;
         preview.arrImages=(NSArray *)arrImages;
         UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
@@ -51,6 +57,16 @@
    /* if ([arrImages count]>0) {
         GallaryVC *preview =[[ GallaryVC alloc] initWithNibName:@"GallaryVC" bundle:nil];
         //preview.arrImages=arrImages;
+=======
+        //preview.arrImages=arrImages;
+        //preview.arrImages=(NSArray *)arrImages;
+        UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+        [rootVC presentViewController:preview animated:YES completion:nil];
+        
+   /* if ([arrImages count]>0) {
+        GallaryVC *preview =[[ GallaryVC alloc] initWithNibName:@"GallaryVC" bundle:nil];
+        //preview.arrImages=arrImages;
+>>>>>>> origin/master
         //preview.arrImages=(NSArray *)arrImages;
         UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
         [rootVC presentViewController:preview animated:YES completion:nil];
