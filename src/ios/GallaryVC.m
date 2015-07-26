@@ -39,6 +39,8 @@
     indexCurrentImage=page;
     
     NSLog(@"page =%ld",(long)indexCurrentImage);
+    
+     NSLog(@"Image URL =%@",[self.arrImages objectAtIndex:indexCurrentImage]);
 }
 -(void)setScrollViewConfig{
     
@@ -47,44 +49,59 @@
     self.mainScrollView.delegate=self;
     self.mainScrollView.pagingEnabled=YES;
     
-    
     topView =[[UIView alloc]initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 50)];
-    topView.backgroundColor=[UIColor clearColor];
+    topView.backgroundColor=[UIColor blackColor];
+    topView.layer.opacity=0.4;
     
     btnClose=[[UIButton alloc]initWithFrame:CGRectMake(5, 2.5, 40, 40)];
-    btnClose.backgroundColor=[UIColor clearColor];
+    btnClose.backgroundColor=[UIColor redColor];
     [btnClose setImage:[UIImage imageNamed:@"close2.png"] forState:UIControlStateNormal];
     [btnClose addTarget:self action:@selector(btnCloseAvtion:) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:btnClose];
     [self.view addSubview:topView];
     
-    
-    
     topView.hidden=NO;
     
     NSInteger intXpos=self.view.frame.size.width;
-    self.mainScrollView.delegate=self;
-        
+    
     
     self.arrImagesViews=[[NSMutableArray alloc]init];
     indexCurrentImage=0;
     self.mainScrollView.scrollEnabled=YES;
+
+/*self.arrImages= [[NSMutableArray alloc]initWithObjects:
+                      [UIImage imageNamed:@"1.jpg"],
+                      [UIImage imageNamed:@"2.jpg"],
+                      [UIImage imageNamed:@"3.jpg"],
+                      [UIImage imageNamed:@"4.jpg"],
+                      [UIImage imageNamed:@"5.jpg"],
+                      [UIImage imageNamed:@"6.jpg"],
+                      [UIImage imageNamed:@"7.jpg"],
+                      [UIImage imageNamed:@"8.jpg"],
+                      [UIImage imageNamed:@"9.jpg"],
+                      nil];
+
+*/
+    
+    NSLog(@"self.arrImages count = %d",self.arrImages.count);
+
     for (int i=0; i<[self.arrImages count]; i++)
     {
         
         AsyncImageView *imgView = [[AsyncImageView alloc]initWithFrame:CGRectMake((i*intXpos)+10, 2, self.view.frame.size.width-20, self.view.frame.size.height)];
-<<<<<<< HEAD
-        imgView.imageURL =[NSURL URLWithString:[[self.arrImages objectAtIndex:i]objectForKey:@"image"]];
-       // imgView.image = [self.arrImages objectAtIndex:i];
-=======
-        //imgView.imageURL =[NSURL URLWithString:[[self.arrImages objectAtIndex:i]objectForKey:@"image"]];
-        imgView.image = [self.arrImages objectAtIndex:i];
->>>>>>> origin/master
+        NSString* escapedUrlString =
+        [[[self.arrImages objectAtIndex:i]objectForKey:@"image"] stringByAddingPercentEscapesUsingEncoding:
+         NSUTF8StringEncoding];
+
+        imgView.imageURL =[NSURL URLWithString:escapedUrlString];
+        //imgView.image = [self.arrImages objectAtIndex:i];
+
         imgView.contentMode = UIViewContentModeScaleAspectFit;
         imgView.clipsToBounds = YES;
         imgView.backgroundColor=[UIColor clearColor];
         [imgView setTag:i];
         [self.mainScrollView addSubview:imgView];
+        
          UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewSingleTapped:)];
         singleTapRecognizer.numberOfTapsRequired = 1;
         [self.mainScrollView addGestureRecognizer:singleTapRecognizer];
@@ -93,7 +110,6 @@
         doubleTapRecognizer.numberOfTapsRequired = 2;
         
         [self.mainScrollView addGestureRecognizer:doubleTapRecognizer];
-        
         [self.arrImagesViews addObject:imgView];
     }
     
