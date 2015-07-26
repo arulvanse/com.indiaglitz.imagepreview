@@ -121,9 +121,9 @@
         [self.arrImagesViews addObject:imgView];
     }
     
-    self.mainScrollView.contentSize=CGSizeMake(self.view.frame.size.width, 0);
+    self.mainScrollView.contentSize=CGSizeMake([self.arrImages count]*self.view.frame.size.width, 0);
     self.mainScrollView.backgroundColor=[UIColor grayColor];
-    /*[self.view addSubview:self.mainScrollView];*/
+    [self.view addSubview:self.mainScrollView];
     
 }
 
