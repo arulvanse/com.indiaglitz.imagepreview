@@ -53,6 +53,13 @@
     <source-file src="src/ios/7.jpg" target-dir="ImagePreviewPlugin"/>
     <source-file src="src/ios/8.jpg" target-dir="ImagePreviewPlugin"/>
     <source-file src="src/ios/9.jpg" target-dir="ImagePreviewPlugin"/>
+    
+    <source-file src="src/ios/close.png" target-dir="ImagePreviewPlugin"/>
+    <source-file src="src/ios/close@2x.png" target-dir="ImagePreviewPlugin"/>
+    <source-file src="src/ios/download.png" target-dir="ImagePreviewPlugin"/>
+    <source-file src="src/ios/download@2x.png" target-dir="ImagePreviewPlugin"/>
+    
+    
 
     
 

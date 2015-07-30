@@ -17,7 +17,7 @@
     
      UIButton *btnClose;
      UIView   *topView;
-    
+    CGRect applicationFrame;
 }
 @property (nonatomic, strong) UIScrollView *mainScrollView;
 @property (nonatomic, strong) NSArray *arrImages;

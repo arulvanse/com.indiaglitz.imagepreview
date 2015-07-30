@@ -14,7 +14,7 @@
     UIButton *btnClose;
     UIButton *btnSave;
     UIView *topView;
-    
+     CGRect applicationFrame;
 }
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIImageView *imageView;

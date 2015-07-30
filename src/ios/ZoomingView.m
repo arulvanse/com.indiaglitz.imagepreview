@@ -28,7 +28,8 @@
     
     if (contentsFrame.size.width < boundsSize.width) {
         contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0f;
-    } else {
+    }
+    else {
         contentsFrame.origin.x = 0.0f;
     }
     
@@ -37,6 +38,7 @@
     } else {
         contentsFrame.origin.y = 0.0f;
     }
+    
     
     self.imageView.frame = contentsFrame;
 }
@@ -75,47 +77,121 @@
     newZoomScale = MAX(newZoomScale, self.scrollView.minimumZoomScale);
     [self.scrollView setZoomScale:newZoomScale animated:YES];
 }
+-(void) setScrollviewConstraint{
+    
+    // Width constraint
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollView
+                                                          attribute:NSLayoutAttributeWidth
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeWidth
+                                                         multiplier:1
+                                                           constant:0]];
+    
+    // Height constraint
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollView
+                                                          attribute:NSLayoutAttributeHeight
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeHeight
+                                                         multiplier:1
+                                                           constant:0]];
+    
+    // Center horizontally
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollView
+                                                          attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterX
+                                                         multiplier:1
+                                                           constant:0.0]];
+    
+    // Center vertically
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollView
+                                                          attribute:NSLayoutAttributeCenterY
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterY
+                                                         multiplier:1
+                                                           constant:0.0]];
+    
+    
+}
+-(void) setTopviewConstraint{
+    
+    // Width constraint
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:topView
+                                                          attribute:NSLayoutAttributeWidth
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeWidth
+                                                         multiplier:1
+                                                           constant:0]];
+    
+    // Height constraint
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:topView
+                                                          attribute:NSLayoutAttributeHeight
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeHeight
+                                                         multiplier:1
+                                                           constant:50-(applicationFrame.size.height)]];
+    
+    // Center horizontally
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:topView
+                                                          attribute:NSLayoutAttributeTop
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeTop
+                                                         multiplier:1
+                                                           constant:20]];
+    
+    
+    [self.view bringSubviewToFront:btnClose];
+    
+}
+
 -(void)setScrollViewConfig{
-    self.scrollView=[[UIScrollView alloc]initWithFrame:self.view.frame];
-    self.scrollView.backgroundColor=[UIColor grayColor];
+    self.scrollView=[[UIScrollView alloc]initWithFrame:applicationFrame];
+    self.scrollView.backgroundColor=[UIColor blackColor];
     self.scrollView.delegate=self;
     
-    topView=[[UIView alloc]initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 50)];
-    topView.backgroundColor=[UIColor blackColor];
-    topView.layer.opacity=0.4;
+    topView=[[UIView alloc]initWithFrame:CGRectMake(0, 30, applicationFrame.size.width, 80)];
+    topView.backgroundColor=[UIColor clearColor];
+    //topView.layer.opacity=0.4;
     
-    btnClose=[[UIButton alloc]initWithFrame:CGRectMake(5, 2.5, 45, 45)];
+    btnClose=[[UIButton alloc]initWithFrame:CGRectMake(10, 5, 60, 60)];
     btnClose.backgroundColor=[UIColor clearColor];
-    [btnClose setImage:[UIImage imageNamed:@"close2"] forState:UIControlStateNormal];
+    [btnClose setImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
     [btnClose addTarget:self action:@selector(btnClose:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    btnSave=[[UIButton alloc]initWithFrame:CGRectMake(topView.frame.size.width-50, 2.5, 45, 45)];
+    btnSave=[[UIButton alloc]initWithFrame:CGRectMake(topView.frame.size.width-80, 5, 60, 60)];
     btnSave.backgroundColor=[UIColor clearColor];
-    [btnSave setImage:[UIImage imageNamed:@"download"] forState:UIControlStateNormal];
+    [btnSave setImage:[UIImage imageNamed:@"download.png"] forState:UIControlStateNormal];
     [btnSave addTarget:self action:@selector(btnSave:) forControlEvents:UIControlEventTouchUpInside];
     
     [topView    addSubview:btnClose];
     [topView    addSubview:btnSave];
-    btnClose.backgroundColor = [UIColor redColor];
-    btnSave.backgroundColor  = [UIColor greenColor];
+    btnClose.backgroundColor = [UIColor clearColor];
+    btnSave.backgroundColor  = [UIColor clearColor];
     
 
     // Set up the image we want to scroll & zoom and add it to the scroll view
     UIImage *image = _mainImage;
     self.imageView = [[UIImageView alloc] initWithImage:image];
+    //self.imageView.frame = (CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=image.size};
     self.imageView.frame = (CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=image.size};
     
     
     /*AsyncImageView *imageView=[[AsyncImageView alloc]init];
      imageView.imageURL =_imageURL;*/
     
-    // self.imageView.image=[UIImage imageNamed:@"photo1.png"];
-    self.imageView.contentMode = UIViewContentModeScaleToFill;
+    self.imageView.contentMode =  UIViewContentModeScaleAspectFill;
     [self.scrollView addSubview:self.imageView];
     
     self.imageView.layer.borderWidth=1.0f;
-    self.imageView.layer.borderColor = [UIColor redColor].CGColor;
+    self.imageView.layer.borderColor = [UIColor clearColor].CGColor;
     
     // Tell the scroll view the size of the contents
     self.scrollView.contentSize = _mainImage.size;
@@ -138,17 +214,17 @@
     [self.scrollView addGestureRecognizer:twoFingerTapRecognizer];
     [self.view addSubview:self.scrollView];
     [self.view  addSubview:topView];
+    [self setTopviewConstraint];
+    [self setScrollviewConstraint];
+    
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+     applicationFrame = [[UIScreen mainScreen] applicationFrame];
     // Set a nice title
     self.title = @"Image";
     [self setScrollViewConfig];
-    
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -161,7 +237,7 @@
     CGFloat minScale = MIN(scaleWidth, scaleHeight);
     
     self.scrollView.minimumZoomScale = minScale;
-    self.scrollView.maximumZoomScale = 3.0f;
+    self.scrollView.maximumZoomScale = 5.0f;
     self.scrollView.zoomScale = minScale;
     
     [self centerScrollViewContents];
@@ -174,10 +250,10 @@
     // Release any retained subviews of the main view.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+/*- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
+}*/
 
 - (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     // Return the view that we want to zoom
