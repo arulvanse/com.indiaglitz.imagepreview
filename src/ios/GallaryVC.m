@@ -98,6 +98,10 @@
         UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewDoubleTapped:)];
         doubleTapRecognizer.numberOfTapsRequired = 2;
         
+        // Add pinchGestureRecognizer recognizer to the scrollView
+        UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewpinchGesture:)];
+        [self.mainScrollView addGestureRecognizer:pinchGestureRecognizer];
+        
         [self.mainScrollView addGestureRecognizer:doubleTapRecognizer];
         [self.arrImagesViews addObject:imgView];
     }
@@ -194,6 +198,10 @@
     NSLog(@"page =%ld",(long)indexCurrentImage);
     
     [self openZoomView];
+}
+-(void)scrollViewpinchGesture:(UIPinchGestureRecognizer*)recognizer {
+    [self openZoomView];
+    topView.hidden=NO;
 }
 -(void)openZoomView{
     if (zoomingView) {
