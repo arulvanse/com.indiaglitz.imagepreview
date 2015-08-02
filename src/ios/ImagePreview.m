@@ -22,58 +22,19 @@
 
     NSArray* arrImages = [[command arguments] objectAtIndex:0];
     
+   // NSUInteger currentIndex= [[command arguments] objectAtIndex:1];
+    
     NSLog(@"arrImages==%@",arrImages);
+     //NSLog(@"arrImages==%@",[[command arguments] objectAtIndex:1]);
 
 
-   // NSArray* arrImages = [command arguments];
-
-
-   // NSArray* arrImages =[ [command arguments];
-
-   // NSString* msg = [NSString stringWithFormat: @"Hello, %@", name];
-   /* CDVPluginResult* result = [CDVPluginResult
-                              resultWithStatus:CDVCommandStatus_OK
-                              messageAsString:msg];
-    [self success:result callbackId:callbackId]; 
-    NSMutableArray *arrImages = [[NSMutableArray alloc]initWithObjects:
-                      [UIImage imageNamed:@"1.jpg"],
-                      [UIImage imageNamed:@"2.jpg"],
-                      [UIImage imageNamed:@"3.jpg"],
-                      [UIImage imageNamed:@"4.jpg"],
-                      [UIImage imageNamed:@"5.jpg"],
-                      [UIImage imageNamed:@"6.jpg"],
-                      [UIImage imageNamed:@"7.jpg"],
-                      [UIImage imageNamed:@"8.jpg"],
-                      [UIImage imageNamed:@"9.jpg"],
-                      nil];
-		*/
-     GallaryVC *preview =[[ GallaryVC alloc] initWithNibName:@"GallaryVC" bundle:nil];
-
-        //preview.arrImages=arrImages;
-        preview.arrImages=(NSArray *)arrImages;
-        UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-        [rootVC presentViewController:preview animated:YES completion:nil];
-        
-   /* if ([arrImages count]>0) {
-        GallaryVC *preview =[[ GallaryVC alloc] initWithNibName:@"GallaryVC" bundle:nil];
-        //preview.arrImages=arrImages;
-
-        //preview.arrImages=arrImages;
-        //preview.arrImages=(NSArray *)arrImages;
-        UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-        [rootVC presentViewController:preview animated:YES completion:nil];
-        
-   /* if ([arrImages count]>0) {
-        GallaryVC *preview =[[ GallaryVC alloc] initWithNibName:@"GallaryVC" bundle:nil];
-        //preview.arrImages=arrImages;
-
-        //preview.arrImages=(NSArray *)arrImages;
-        UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-        [rootVC presentViewController:preview animated:YES completion:nil];
-        
-        
-        
-    }*/
+    GallaryVC2 *preview2 =[[ GallaryVC2 alloc] initWithNibName:@"GallaryVC2" bundle:nil];
+    preview2.arrImages=arrImages;
+    preview2.indexCurrentImage =5;
+    UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    [rootVC presentViewController:preview2 animated:YES completion:nil];
+    
+   
 }
 - (void) closeGallary:(CDVInvokedUrlCommand*)command{
     
