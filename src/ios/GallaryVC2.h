@@ -10,7 +10,7 @@
 #import "AsyncImageView.h"
 #import "zoomView.h"
 
-@class zoomView;
+@class zoomView ;
 
 @interface GallaryVC2 : UIViewController <UIScrollViewDelegate,zoomViewDelegate>
 {
