@@ -42,7 +42,7 @@
     
     <header-file src="src/ios/new/zoomView.h" target-dir="ImagePreviewPlugin"/>
     <source-file src="src/ios/new/zoomView.m" target-dir="ImagePreviewPlugin"/>
-    <source-file src="src/ios/new/zoomView.xib" target-dir="ImagePreviewPlugin"/>
+    
     
     <header-file src="src/ios/new/ZoomingView.h" target-dir="ImagePreviewPlugin"/>
     <source-file src="src/ios/new/ZoomingView.m" target-dir="ImagePreviewPlugin"/>
