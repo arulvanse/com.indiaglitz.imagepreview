@@ -36,8 +36,8 @@
 #pragma GCC diagnostic ignored "-Wobjc-missing-property-synthesis"
 
 
-extern NSString *const AsyncImageLoadDidFinish;
-extern NSString *const AsyncImageLoadDidFail;
+extern NSString *const AsyncImageLoadDidFinish ;
+extern NSString *const AsyncImageLoadDidFail ;
 
 extern NSString *const AsyncImageImageKey;
 extern NSString *const AsyncImageURLKey;
